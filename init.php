@@ -1,9 +1,24 @@
 <?php
 
-/** ############################### GIT################################################
- * 4 status de fichier sur git
- *  - untracked => les fichiers créés mais non suivis par git
- *  - tracked   => les fichiers suivis par git mais non envoyés sur le repository
- *  - staged    => les fichiers suivis enregistrés mais non envoyés vers le repository
- *  - commited   => les fichiers envoyés et non modifiés du projet
- */
+//CONNEXION BDD
+try {
+    $bdd=new PDO("mysql:host=localhost;dbname=meubles","","root", [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING
+    ]);
+} catch (\Exception $e) {
+    die("ERREUR CONNEXION BDD:".$e->getmessage());
+}
+
+//CREATION DE LA FONCTION DEBUG
+
+function debug($value){
+    echo"<pre>";
+        print_r($value);
+    echo "</pre>";
+}
+
+//INITIALISATION DES VARIABLES GENERALES
+
+$errorMessage="";
+$successMessage="";
+
